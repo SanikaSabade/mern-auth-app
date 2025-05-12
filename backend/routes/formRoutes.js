@@ -1,12 +1,11 @@
 const express = require('express');
+const { submitForm } = require('../controllers/formController');
+const authenticateToken = require('../middleware/auth');  
+const { getDashboardStats } = require('../controllers/formController');
 const router = express.Router();
-const { submitForm, getForms } = require('../controllers/formController');
-const { protect, admin } = require('../middleware/authMiddleware');
 
-router.post('/', protect, submitForm);   // Submit form (protected)
-
-
-router.get('/', protect, admin, getForms);   // Get all forms (admin only)
+router.post('/submit', authenticateToken, submitForm);  
+router.get('/dashboard', getDashboardStats);
 
 
 module.exports = router;

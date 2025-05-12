@@ -1,31 +1,19 @@
 const mongoose = require('mongoose');
 
 const formSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  name: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true
-  },
-  phone: {
-    type: String,
-    required: true
-  },
-  address: {
-    type: String,
-    required: true
-  },
-  message: String
-}, {
-  timestamps: true
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+
+  date: { type: Date, required: true },
+  productNo: { type: String, required: true },
+  productName: { type: String, required: true },
+  productDimension: { type: String },
+  status: { type: String },
+  price: { type: Number },
+  plantName: { type: String },
+  notes: { type: String },
+  productDescription: { type: String },
 });
 
 const Form = mongoose.model('Form', formSchema);
+
 module.exports = Form;
